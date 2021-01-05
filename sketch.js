@@ -3,13 +3,15 @@
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
+const Constraint = Matter.Constraint;
 
 var engine,world;
-var paperObjectBody,log1,log2,log3,log4,dustbinImage;
+var paperObjectBody,log1,chain1,paperObjectBody1,paperObjectBody2,paperObjectBody3,paperObjectBody4,chain2,chain3,chain4,chain5;
+var log2,log3,log4,log5;
 
 function preload(){
 
-  dustbinImage = loadImage("dustbingreen.png")
+ 
  
 }
 
@@ -26,14 +28,20 @@ function setup() {
   
   
   paperObjectBody = new Paper(200,185,15);
+  paperObjectBody1 = new Paper(208,185,15);
+  paperObjectBody2 = new Paper(216,185,15);
+  paperObjectBody3 = new Paper(224,185,15);
+  paperObjectBody4 = new Paper(236,185,15);
 
-  log1 = new Log(630,185,100,10);
+  log1 = new Ground(400,100,200,10);
   
-	log2 = new Ground(400,395,800,10);
- 
-  log3 = new Log(580,165,10,80);
+
   
-  log4 = new Log(680,165,10,80);
+  chain1 = new Chain(log1.body,paperObjectBody.body);
+  chain2 = new Chain(log1.body,paperObjectBody1.body);
+  chain3 = new Chain(log1.body,paperObjectBody2.body);
+  chain4 = new Chain(log1.body,paperObjectBody3.body);
+	chain5 = new Chain(log1.body,paperObjectBody4.body);
   
    
     
@@ -42,19 +50,26 @@ function setup() {
 
 function draw() {
   rectMode(CENTER);
-  background(0);
+  background("skyblue");
   Engine.update(engine);
  
-  imageMode(CENTER);
-  image (dustbinImage,630,330,100,100);
+  
  
 
  
  paperObjectBody.display();
+ paperObjectBody1.display();
+ paperObjectBody2.display();
+ paperObjectBody3.display();
+ paperObjectBody4.display();
  log1.display();
- log2.display();
- log3.display();
- log4.display();
+
+ chain1.display();
+ chain2.display();
+ chain3.display();
+ chain4.display();
+ chain5.display();
+
  
 }
 
